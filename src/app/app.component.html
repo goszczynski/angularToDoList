@@ -1,0 +1,52 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-12 text-center">
+      <h1 class="alert alert-info">
+        {{title}}
+      </h1>
+    </div>
+  </div>
+
+  <!-- dodaj zadanie -->
+  <div class="row">
+    <div class="col-12">
+      <div class="input-group mb-3">
+        <input [(ngModel)]="newTask" type="text" class="form-control">
+        <div class="input-group-append">
+          <button (click)="add()" class="btn btn-info btn-lg" type="button">add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- zadania dodane -->
+  <div class="row">
+    <div class="col-6">
+      <ul class="list-group">
+        <li [ngClass]="getColor()" class="list-group-item ">Tasks todo: {{taskList.length}}</li>
+        <li *ngFor="let task of taskList, let i = index" class="list-group-item list-group-item-action d-flex justify-content-start ">
+            <span class="badge badge-primary badge-pill">{{i + 1}}</span><span class="ml-2">{{task }}</span>
+          <div class="ml-auto p-2">
+              <button (click)="done(task)" type="button" class="btn btn-success btn-sm">Done</button>
+              <button (click)="remove(task)" type="button" class="btn btn-danger btn-sm">Delete</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- zadania zrobione -->
+    <div class="col-6">
+        <ul class="list-group">
+          <li [ngClass]="getColorDone()" class="list-group-item">Tasks done: {{taskDone.length}}</li>
+          <li *ngFor="let task of taskDone, let i = index" class="list-group-item list-group-item-action d-flex justify-content-start ">
+              <span class="badge badge-primary badge-pill">{{i + 1}}</span><span class="ml-2">{{task }}</span>
+            <div class="ml-auto p-2"> 
+                <button (click)="removeDone(task)" type="button" class="btn btn-danger btn-sm">Delete</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+  </div>
+</div>
+
